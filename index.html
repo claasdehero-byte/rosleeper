@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rosleeper">
+  <meta name="theme-color" content="#0c0e18">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Rosleeper</title>
+</head>
+<body>
+  <main>
+    <section id="status" aria-live="polite">
+      <p id="status-main"></p>
+      <p id="status-sub"></p>
+      <p id="status-rec" class="rec"></p>
+    </section>
+
+    <button id="toggle" type="button"></button>
+
+    <section>
+      <h2>Woche</h2>
+      <ul id="week"></ul>
+    </section>
+
+    <section>
+      <h2>Verlauf</h2>
+      <ul id="history"></ul>
+    </section>
+
+    <p class="hint">Wach-Fenster sind Richtwerte aus Erfahrungswerten, keine medizinische Empfehlung.</p>
+  </main>
+
+  <dialog id="edit">
+    <form method="dialog" id="edit-form">
+      <h2>Eintrag korrigieren</h2>
+      <label>Start <input type="datetime-local" id="edit-start" required></label>
+      <label id="edit-end-label">Ende <input type="datetime-local" id="edit-end"></label>
+      <p id="edit-error" role="alert"></p>
+      <div class="row">
+        <button type="button" id="edit-cancel">Abbrechen</button>
+        <button type="submit" id="edit-save">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="setup">
+    <form method="dialog" id="setup-form">
+      <h2>Geburtsdatum des Kindes</h2>
+      <label>Datum <input type="date" id="setup-date" required></label>
+      <p class="hint">Wird nur auf diesem Gerät gespeichert und für die Altersrichtwerte genutzt.</p>
+      <div class="row"><button type="submit" id="setup-save">Speichern</button></div>
+    </form>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

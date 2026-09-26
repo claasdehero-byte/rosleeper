@@ -309,6 +309,12 @@ function openEditor(entry) {
 }
 
 $('edit-cancel').addEventListener('click', () => $('edit').close());
+$('edit-delete').addEventListener('click', () => {
+  if (!window.confirm('Diesen Eintrag endgültig löschen?')) return;
+  store.removeEntry(editing.id);
+  $('edit').close();
+  render();
+});
 $('edit-form').addEventListener('submit', (event) => {
   event.preventDefault();
   try {

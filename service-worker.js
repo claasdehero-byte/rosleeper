@@ -1,4 +1,4 @@
-const CACHE = 'rosleeper-v4';
+const CACHE = 'rosleeper-v5';
 const SHELL = [
   './',
   'index.html',

@@ -130,3 +130,6 @@ input { display: block; width: 100%; margin-top: 4px; min-height: 48px; font: in
 #wake-dialog .chips { margin-top: 12px; }
 #wake-dialog .chip { min-height: 72px; font-size: 18px; background: var(--bg); box-shadow: none; }
 .row button.plain { background: var(--bg); }
+
+#edit-delete { display: block; width: 100%; margin-top: 12px; min-height: 48px; border: 0; border-radius: 14px; background: none; color: var(--late); font: inherit; font-weight: 600; }
+[hidden] { display: none !important; }

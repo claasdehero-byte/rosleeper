@@ -52,6 +52,9 @@ export function createSleepStore(storage) {
         ),
       );
     },
+    removeEntry(id) {
+      save(load().filter((e) => e.id !== id));
+    },
     list() {
       return load().sort((a, b) => b.startedAt.localeCompare(a.startedAt));
     },

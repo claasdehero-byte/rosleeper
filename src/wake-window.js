@@ -1,7 +1,7 @@
 export function ageInMonths(birthDate, now) {
   const [by, bm, bd] = birthDate.split('-').map(Number);
-  let months = (now.getUTCFullYear() - by) * 12 + (now.getUTCMonth() + 1 - bm);
-  if (now.getUTCDate() < bd) months -= 1;
+  let months = (now.getFullYear() - by) * 12 + (now.getMonth() + 1 - bm);
+  if (now.getDate() < bd) months -= 1;
   return months;
 }
 

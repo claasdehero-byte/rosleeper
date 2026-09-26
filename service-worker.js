@@ -1,4 +1,4 @@
-const CACHE = 'rosleeper-v1';
+const CACHE = 'rosleeper-v4';
 const SHELL = [
   './',
   'index.html',
@@ -8,6 +8,12 @@ const SHELL = [
   'src/sleep-store.js',
   'src/wake-window.js',
   'src/history.js',
+  'src/event-store.js',
+  'src/analysis.js',
+  'src/chart.js',
+  'src/reference.js',
+  'src/night-wakes.js',
+  'src/backup.js',
   'icons/apple-touch-icon.png',
   'icons/icon-192.png',
   'icons/icon-512.png',

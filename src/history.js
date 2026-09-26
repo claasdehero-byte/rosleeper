@@ -1,6 +1,6 @@
 const MINUTE = 60_000;
 
-const isNight = (start) => start.getHours() >= 18 || start.getHours() < 6;
+export const isNight = (start) => start.getHours() >= 18 || start.getHours() < 6;
 
 const isSameLocalDay = (a, b) =>
   a.getFullYear() === b.getFullYear() &&

@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Rosleeper">
-  <meta name="theme-color" content="#0c0e18">
+  <meta name="theme-color" content="#fdf6ee">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
@@ -14,17 +14,51 @@
 </head>
 <body>
   <main>
-    <section id="status" aria-live="polite">
+    <section id="status" class="card" aria-live="polite">
+      <p id="status-emoji" aria-hidden="true"></p>
       <p id="status-main"></p>
       <p id="status-sub"></p>
       <p id="status-rec" class="rec"></p>
     </section>
 
     <button id="toggle" type="button"></button>
+    <button id="wake-btn" type="button" hidden>👶 Kurz wach (Stillen, Windel …)</button>
 
     <section>
-      <h2>Woche</h2>
-      <ul id="week"></ul>
+      <h2>Ereignis festhalten</h2>
+      <div id="event-chips" class="chips"></div>
+      <ul id="events"></ul>
+    </section>
+
+    <section id="wakes-section" hidden>
+      <h2>Nachts wach</h2>
+      <ul id="wakes"></ul>
+    </section>
+
+    <section>
+      <div class="weeknav">
+        <button id="week-prev" type="button" aria-label="Woche davor">‹</button>
+        <span id="week-label"></span>
+        <button id="week-next" type="button" aria-label="Woche danach">›</button>
+      </div>
+      <h2>Auswertung</h2>
+      <div id="report" class="card"></div>
+    </section>
+
+    <section>
+      <h2>Wachphasen</h2>
+      <div class="card">
+        <div id="chart-wake"></div>
+        <p class="legend"><span class="swatch" style="background:var(--wake)"></span>vor Nap <span class="swatch hollow-swatch"></span>vor Nacht <span class="swatch band-swatch"></span>Richtwert (Naps)</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Schlafphasen</h2>
+      <div class="card">
+        <div id="chart-sleep"></div>
+        <p class="legend"><span class="swatch" style="background:var(--nap)"></span>Nap <span class="swatch" style="background:var(--night)"></span>Nacht</p>
+      </div>
     </section>
 
     <section>
@@ -32,7 +66,20 @@
       <ul id="history"></ul>
     </section>
 
-    <p class="hint">Wach-Fenster sind Richtwerte aus Erfahrungswerten, keine medizinische Empfehlung.</p>
+    <section>
+      <h2>Daten sichern</h2>
+      <div class="card">
+        <p class="note" style="margin-top:0">Die Daten liegen nur auf diesem Gerät. Die Sicherung enthält auch das Geburtsdatum und Gesundheitsereignisse, speichere sie deshalb nur an einem Ort, dem du vertraust.</p>
+        <div class="row">
+          <button type="button" id="backup-export" class="plain">Sicherung speichern</button>
+          <button type="button" id="backup-import" class="plain">Sicherung laden</button>
+        </div>
+        <input type="file" id="backup-file" accept="application/json,.json" hidden>
+        <p id="backup-msg" class="note" role="status"></p>
+      </div>
+    </section>
+
+    <p class="hint">Wach-Fenster sind Richtwerte aus Erfahrungswerten, keine medizinische Empfehlung. Alle Daten bleiben auf diesem Gerät.</p>
   </main>
 
   <dialog id="edit">
@@ -46,6 +93,24 @@
         <button type="submit" id="edit-save">Speichern</button>
       </div>
     </form>
+  </dialog>
+
+  <dialog id="event-dialog">
+    <form method="dialog" id="event-form">
+      <h2 id="event-title"></h2>
+      <label>Wann <input type="datetime-local" id="event-when" required></label>
+      <label>Notiz (optional) <input type="text" id="event-note" maxlength="120" placeholder="z. B. 38,5 °C, Sechsfach-Impfung"></label>
+      <div class="row">
+        <button type="button" id="event-cancel">Abbrechen</button>
+        <button type="submit" id="event-save">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="wake-dialog">
+    <h2>Warum wach?</h2>
+    <div id="wake-reasons" class="chips"></div>
+    <div class="row"><button type="button" id="wake-cancel">Abbrechen</button></div>
   </dialog>
 
   <dialog id="setup">

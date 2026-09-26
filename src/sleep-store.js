@@ -1,15 +1,15 @@
-const KEY = 'rosleeper.sleepEntries';
+export const SLEEP_KEY = 'rosleeper.sleepEntries';
 
 export function createSleepStore(storage) {
   const load = () => {
     try {
-      const entries = JSON.parse(storage.getItem(KEY) ?? '[]');
+      const entries = JSON.parse(storage.getItem(SLEEP_KEY) ?? '[]');
       return Array.isArray(entries) ? entries : [];
     } catch {
       return [];
     }
   };
-  const save = (entries) => storage.setItem(KEY, JSON.stringify(entries));
+  const save = (entries) => storage.setItem(SLEEP_KEY, JSON.stringify(entries));
 
   return {
     startSleep(now) {
